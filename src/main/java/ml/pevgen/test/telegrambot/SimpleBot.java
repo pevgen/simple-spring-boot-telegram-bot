@@ -12,7 +12,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class SimpleBot extends TelegramLongPollingBot {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Value("${bot.name}")
     private String botName;
@@ -20,9 +20,6 @@ public class SimpleBot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String botToken;
 
-    /* Перегружаем метод интерфейса LongPollingBot
-    Теперь при получении сообщения наш бот будет отвечать сообщением Hi!
-     */
     @Override
     public void onUpdateReceived(Update update) {
         if (update.getMessage().getText().equals("/hello")) {
@@ -38,7 +35,6 @@ public class SimpleBot extends TelegramLongPollingBot {
         }
     }
 
-    // Геттеры, которые необходимы для наследования от TelegramLongPollingBot
     public String getBotUsername() {
         return botName;
     }
